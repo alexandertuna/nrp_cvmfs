@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cvmfs-cms
+spec:
+  containers:
+   - name: shell
+     image: "centos:7"
+     imagePullPolicy: IfNotPresent
+     command: ["/bin/sh", "-c", "sleep infinity"]
+     volumeMounts:
+       - name: cvmfs-mount
+         subPath: cms.cern.ch
+         mountPath: /cvmfs/cms
+         mountPropagation: HostToContainer
+  volumes:
+   - name: cvmfs-mount
+     persistentVolumeClaim:
+       claimName: cvmfs
