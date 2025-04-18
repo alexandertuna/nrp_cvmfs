@@ -5,13 +5,15 @@ metadata:
 spec:
   containers:
    - name: shell
-     image: "centos:7"
+     image: "almalinux:8.10"
+     # image: "centos:7"
+     # image: "quay.io/jupyter/base-notebook"
      imagePullPolicy: IfNotPresent
      command: ["/bin/sh", "-c", "sleep infinity"]
      volumeMounts:
        - name: cvmfs-mount
          subPath: cms.cern.ch
-         mountPath: /cvmfs/cms
+         mountPath: /cvmfs/cms.cern.ch
          mountPropagation: HostToContainer
   volumes:
    - name: cvmfs-mount
